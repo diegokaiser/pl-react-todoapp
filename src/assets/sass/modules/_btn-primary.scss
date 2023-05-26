@@ -1,0 +1,23 @@
+@mixin btn-primary {
+  background-color: $green;  
+  box-sizing: border-box;
+  box-shadow: 2.88732px 2.88732px 5.77465px rgba(1, 79, 38, 0.18);
+  border: 1px solid $green;
+  border-radius: 8px;
+  box-sizing: content-box;
+  color: $white;
+  display: inline-block;
+  font-family: $poppins;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: .35s ease;
+  &:hover {
+    background-color: $white;
+    color: $green;
+  }
+  @include tablet720 {
+    font-size: 16px;
+    padding: 10px 0;
+  }
+}

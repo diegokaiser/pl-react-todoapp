@@ -1,0 +1,9 @@
+@function get-width($columns, $total) {
+  @return calc(100% / $total) * $columns;
+}
+
+@function get-margin($columns, $total) {
+  @return calc(100% / $total) * $columns;
+}
+
+// margin: 0 get-width(1, 31);

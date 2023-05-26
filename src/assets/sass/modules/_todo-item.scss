@@ -1,0 +1,16 @@
+@mixin todo-item {
+  align-items: center;
+  background-color: #90CAF9;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding: get-width(.25, 9);
+  span {
+    width: get-width(1, 9);
+  }
+  p {
+    margin: 0;
+    width: get-width(6.5, 9);
+  }
+}

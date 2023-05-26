@@ -1,0 +1,35 @@
+@mixin mobile480 {
+  @media (min-width: 481px) {
+    @content;
+  }
+}
+
+@mixin tablet720 {
+  @media (min-width: 719px) {
+    @content;
+  }
+}
+
+@mixin laptop1280 {
+  @media (min-width: 1280px) {
+    @content;
+  }
+}
+
+@mixin laptop1366 {
+  @media (min-width: 1366px) {
+    @content;
+  }
+}
+
+@mixin tabport2 {
+  @media only screen and (min-device-width: 700px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    @content;
+  }
+}
+
+@mixin alto700 {
+  @media (min-height: 701px) {
+    @content;
+  }
+}
