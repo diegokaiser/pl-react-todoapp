@@ -1,7 +1,9 @@
 function CreateTodoButton() {
   return (
     <div className="todo__actions">
-      <button>Crear TODO +</button>
+      <button onClick={(event) => console.log("###event", event.target)}>
+        Crear TODO +
+      </button>
     </div>
   );
 }

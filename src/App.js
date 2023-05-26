@@ -9,7 +9,7 @@ import { TodoItem } from "./TodoItem";
 const defaultTodos = [
   {
     text: "Alimentar a las vacas",
-    completed: false,
+    completed: true,
   },
   {
     text: "Alimentar a las ovejas",
@@ -46,11 +46,15 @@ const defaultTodos = [
 ];
 
 function App() {
+  const [todos, setTodos] = React.useState(defaultTodos);
+  const [searchValue, setSearchValue] = React.useState("");
+  const completedTodos = todos.filter((todo) => todo.completed).length;
+  const totalTodos = todos.length;
   return (
     <div className="container">
       <div className="todo">
-        <TodoCounter completed={3} total={7} />
-        <TodoSearch />
+        <TodoCounter completed={completedTodos} total={totalTodos} />
+        <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
         <TodoList>
           {defaultTodos.map((todo) => (
             <TodoItem

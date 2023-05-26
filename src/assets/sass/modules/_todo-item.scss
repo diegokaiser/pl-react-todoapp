@@ -7,10 +7,14 @@
   margin-bottom: 14px;
   padding: get-width(.25, 9);
   span {
+    cursor: pointer;
     width: get-width(1, 9);
   }
   p {
     margin: 0;
     width: get-width(6.5, 9);
+  }
+  &.completed {
+    background-color: #E1F5FE;
   }
 }
