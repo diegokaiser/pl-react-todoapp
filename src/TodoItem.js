@@ -1,9 +1,9 @@
-function TodoItem({ text, completed }) {
+function TodoItem({ text, completed, onComplete, onDelete }) {
   return (
     <li className={`todo__list-item ${completed ? "completed" : ""}`}>
-      <span>V</span>
+      <span onClick={onComplete}>V</span>
       <p>{text}</p>
-      <span>X</span>
+      <span onClick={onDelete}>X</span>
     </li>
   );
 }
