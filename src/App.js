@@ -48,15 +48,24 @@ const defaultTodos = [
 function App() {
   const [todos, setTodos] = React.useState(defaultTodos);
   const [searchValue, setSearchValue] = React.useState("");
-  const completedTodos = todos.filter((todo) => todo.completed).length;
+
+  const completedTodos = todos.filter((todo) => !!todo.completed).length;
   const totalTodos = todos.length;
+  const searchedTodo = todos.filter((todo) => {
+    const noTildes = (text) => {
+      return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    };
+    const todoTextToLowerCase = noTildes(todo.text.toLowerCase());
+    const searchValueToLowerCase = noTildes(searchValue.toLowerCase());
+    return todoTextToLowerCase.includes(searchValueToLowerCase);
+  });
   return (
     <div className="container">
       <div className="todo">
         <TodoCounter completed={completedTodos} total={totalTodos} />
         <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
         <TodoList>
-          {defaultTodos.map((todo) => (
+          {searchedTodo.map((todo) => (
             <TodoItem
               key={todo.text}
               text={todo.text}
