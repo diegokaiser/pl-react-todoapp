@@ -1,10 +1,10 @@
 .todo {
-  font-family: $poppins;
-  margin: 35px auto 0 auto;
+  font-family: $raleway;
+  margin: 35px auto;
   width: get-width(27, 31);
   &__counter {
     @include todo-counter;
-    margin: 0 auto 14px auto;
+    margin: 0 auto 21px auto;
     width: get-width(9, 27);
   }
   &__search {
@@ -14,7 +14,7 @@
   }
   &__list {
     @include todo-list;
-    margin: 0 auto 14px auto;
+    margin: 0 auto 21px auto;
     width: get-width(9, 27);
     &-item {
       @include todo-item;
@@ -24,11 +24,11 @@
     display: flex;
     justify-content: center;
     margin: 0 auto;
-    width: get-width(11, 27);
+    width: get-width(9, 27);
     button {
       @include btn-primary;
       cursor: pointer;
-      width: get-width(9, 11);
+      width: get-width(9, 9);
     }
   }
 }

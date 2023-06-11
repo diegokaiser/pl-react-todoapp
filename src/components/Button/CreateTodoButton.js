@@ -1,8 +1,10 @@
+import { HiPlus } from "react-icons/hi";
+
 function CreateTodoButton() {
   return (
     <div className="todo__actions">
       <button onClick={(event) => console.log("###event", event.target)}>
-        Crear TODO +
+        Crear TODO <HiPlus />
       </button>
     </div>
   );

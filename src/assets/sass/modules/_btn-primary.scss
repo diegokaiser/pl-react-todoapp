@@ -1,14 +1,18 @@
 @mixin btn-primary {
+  align-items: center;
   background-color: $green;  
   box-sizing: border-box;
   box-shadow: 2.88732px 2.88732px 5.77465px rgba(1, 79, 38, 0.18);
-  border: 1px solid $green;
-  border-radius: 8px;
-  box-sizing: content-box;
+  border: 2px solid $green;
+  border-radius: 22.5px;
+  box-sizing: border-box;
   color: $white;
-  display: inline-block;
-  font-family: $poppins;
+  display: flex;
+  font-family: $raleway;
+  font-size: 16px;
   font-weight: 600;
+  height: 63px;
+  justify-content: center;
   text-align: center;
   text-decoration: none;
   transition: .35s ease;
@@ -16,8 +20,7 @@
     background-color: $white;
     color: $green;
   }
-  @include tablet720 {
-    font-size: 16px;
-    padding: 10px 0;
+  svg {
+    margin-left: 14px;
   }
 }

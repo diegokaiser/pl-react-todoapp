@@ -1,20 +1,132 @@
 @mixin todo-item {
   align-items: center;
-  background-color: #90CAF9;
-  border-radius: 4px;
+  background-color: #F5F5F5;
+  border-radius: 22.5px;
+  box-sizing: border-box;
   display: flex;
+  height: 63px;
   justify-content: space-between;
   margin-bottom: 14px;
-  padding: get-width(.25, 9);
+  padding: 15px;
   span {
+    align-items: center;
+    background-color: #E1E2E2;
+    border-radius: 11.25px;
     cursor: pointer;
-    width: get-width(1, 9);
+    display: flex;
+    height: 35px;
+    justify-content: center;
+    width: 35px;
+    transition: .35s ease;
+    &:hover {
+      border-radius: 35px;
+    }
+    svg {
+      height: 14px;
+      width: 14px;
+    }
   }
   p {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
     margin: 0;
-    width: get-width(6.5, 9);
+    width: get-width(6, 9);
+  }
+  &.low,
+  &.medium,
+  &.high,
+  &.completed {
+    span {
+      &:last-child {
+        background-color: #E1E2E2;
+        color: #333;   
+        position: relative;
+        .item {
+          background-color: #fff;
+          box-shadow: 0 1px 2px rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15);
+          border-radius: 11px;
+          opacity: 0;
+          position: absolute;
+          right: 0;
+          top: 35px;
+          visibility: hidden;
+          z-index: 99;
+          transition: .35s ease;
+          &__menu {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            &::before {
+              background-color: #fff;
+              content: "";
+              display: block;
+              height: 10px;
+              position: absolute;
+              right: 12px;
+              transform: rotate(45deg);
+              top: -4px;
+              width: 10px;
+            }
+            &-action {
+              align-items: center;
+              border-bottom: 1px solid #B6B8B9;
+              display: flex;
+              font-size: 14px;
+              justify-content: space-between;
+              padding: 11px 14px;
+              &:last-child {
+                border-bottom: 0;
+              }
+              svg {
+                margin-left: 7px;
+              }
+            }
+          }
+        }
+        &:hover {
+          .item {
+            opacity: 1;
+            top: 28px;
+            visibility: visible;
+          }
+        }
+      }
+    }
+  }
+  &.low {
+    background-color: #D8E1F2;
+    span {
+      background-color: #2B71FC;
+      color: $white;      
+    }
+  }
+  &.medium {
+    background-color: #FFF6E5;
+    span {
+      background-color: #FFB931;
+      color: $white;
+    }
+  }
+  &.high {
+    background-color: #F1DEDE;
+    span {
+      background-color: #FD3E3E;
+      color: $white;
+    }
   }
   &.completed {
-    background-color: #E1F5FE;
+    background-color: #D8EDDD;
+    span {
+      background-color: #2BD350;
+      color: $white;
+      &:last-child {
+        background-color: transparent;
+        cursor: default;
+      }
+    }
+    p {
+      font-weight: 400;
+    }
   }
 }

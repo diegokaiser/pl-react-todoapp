@@ -1,16 +1,16 @@
 @mixin todo-search {
   input {
     background-color: $white;
-    border: 1px solid #333;
-    border-radius: 8px;
+    border: 1px solid #E1E2E2;
+    border-radius: 22.5px;
     box-sizing: border-box;
     color: #333;
     font-size: 14px;
-    padding: 11px 14px;
+    padding: 22px 14px;
     width: 100%;
     &::placeholder {
       color: #8e8e8e;
-      font-family: $poppins;
+      font-family: $raleway;
       font-size: 14px;
     }
   }

@@ -1,52 +1,88 @@
 import React from "react";
 import "./assets/sass/App.scss";
-import { TodoCounter } from "./TodoCounter";
-import { TodoList } from "./TodoList";
-import { TodoSearch } from "./TodoSearch";
-import { CreateTodoButton } from "./CreateTodoButton";
-import { TodoItem } from "./TodoItem";
+import { TodoCounter } from "./components/Counter/TodoCounter";
+import { TodoList } from "./components/List/TodoList";
+import { TodoSearch } from "./components/Search/TodoSearch";
+import { CreateTodoButton } from "./components/Button/CreateTodoButton";
+import { TodoItem } from "./components/List/TodoItem";
 
+/*
 const defaultTodos = [
   {
     text: "Alimentar a las vacas",
+    level: "high",
     completed: true,
   },
   {
     text: "Alimentar a las ovejas",
+    level: "high",
     completed: false,
   },
   {
     text: "Alimentar a los cerdos",
+    level: "high",
     completed: false,
   },
   {
     text: "Alimentar a los pollos",
+    level: "high",
     completed: false,
   },
   {
     text: "Generar roca",
+    level: "medium",
     completed: false,
   },
   {
     text: "Desocupar hornos",
+    level: "medium",
     completed: false,
   },
   {
     text: "Cocinar roca",
+    level: "medium",
     completed: false,
   },
   {
     text: "Recolectar caña de azúcar",
+    level: "low",
     completed: false,
   },
   {
     text: "Crear papel",
+    level: "low",
     completed: false,
   },
 ];
 
+localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos))
+localStorage.removeItem('TODOS_V1')
+*/
+
+function useLocalStorage(itemName, initialValue) {
+  const localStorageItem = localStorage.getItem(itemName);
+
+  let parsedItem;
+
+  if (!localStorageItem) {
+    localStorage.setItem(itemName, JSON.stringify(initialValue));
+    parsedItem = initialValue;
+  } else {
+    parsedItem = JSON.parse(localStorageItem);
+  }
+
+  const [item, setItem] = React.useState(parsedItem);
+
+  const saveItem = (newItem) => {
+    localStorage.setItem(itemName, JSON.stringify(newItem));
+    setItem(newItem);
+  };
+
+  return [item, saveItem];
+}
+
 function App() {
-  const [todos, setTodos] = React.useState(defaultTodos);
+  const [todos, saveTodos] = useLocalStorage("TODOS_V1", []);
   const [searchValue, setSearchValue] = React.useState("");
 
   const completedTodos = todos.filter((todo) => !!todo.completed).length;
@@ -60,17 +96,20 @@ function App() {
     return todoTextToLowerCase.includes(searchValueToLowerCase);
   });
 
+  // set todo to complete
   const completeTodo = (text) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex((todo) => todo.text === text);
     newTodos[todoIndex].completed = true;
-    setTodos(newTodos);
+    saveTodos(newTodos);
   };
+
+  // delete todo
   const deleteTodo = (text) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex((todo) => todo.text === text);
     newTodos.splice(todoIndex, 1);
-    setTodos(newTodos);
+    saveTodos(newTodos);
   };
   return (
     <div className="container">
@@ -82,6 +121,7 @@ function App() {
             <TodoItem
               key={todo.text}
               text={todo.text}
+              level={todo.level}
               completed={todo.completed}
               onComplete={() => completeTodo(todo.text)}
               onDelete={() => deleteTodo(todo.text)}
